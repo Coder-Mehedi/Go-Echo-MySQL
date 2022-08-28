@@ -2,6 +2,7 @@ package storage
 
 import (
 	config "gomysql/config"
+	"gomysql/model"
 	"log"
 
 	"github.com/jinzhu/gorm"
@@ -16,6 +17,7 @@ func NewDB(params ...string) *gorm.DB {
 	log.Print(conString)
 
 	DB, err = gorm.Open(config.GetDBType(), conString)
+	DB.AutoMigrate(&model.User{})
 
 	if err != nil {
 		log.Panic(err)

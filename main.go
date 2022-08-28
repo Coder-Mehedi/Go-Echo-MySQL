@@ -18,8 +18,12 @@ func main() {
   e.Use(middleware.Recover())
 
   // Routes
-  e.GET("/", hello)
-  e.GET("/students", controller.GetStudents)
+  e.GET(("/users"), controller.GetUsers)
+  e.GET(("/users/:id"), controller.GetUser)
+  e.POST(("/users"), controller.CreateUser)
+  e.PATCH(("/users/:id"), controller.UpdateUser)
+  e.DELETE(("/users/:id"), controller.DeleteUser)
+
 
   // Start server
   e.Logger.Fatal(e.Start(":1323"))
